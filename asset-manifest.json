@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/bookify/static/css/main.99e4cf39.css",
+    "main.js": "/bookify/static/js/main.8c86fded.js",
+    "index.html": "/bookify/index.html",
+    "main.99e4cf39.css.map": "/bookify/static/css/main.99e4cf39.css.map",
+    "main.8c86fded.js.map": "/bookify/static/js/main.8c86fded.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.99e4cf39.css",
+    "static/js/main.8c86fded.js"
+  ]
+}
