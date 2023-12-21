@@ -41,8 +41,12 @@ const storage = getStorage(firebaseApp);
 const firestore = getFirestore(firebaseApp);
 
 export const FirebaseProvider = (props) => {
+
+
+  
   // user information hook
   const [user, setuser] = useState(null);
+  const isLoggedIn = user ? true : false
   // Create Book into firstore
   const submitBooks = async (name, isbnNumber, coverImage, price) => {
     const storeRef = ref(storage,`uploads/images/${Date.now()}-${coverImage.name}`);
@@ -102,31 +106,30 @@ export const FirebaseProvider = (props) => {
   };
 
   // create new user
-  const registerUser = (email, password) =>
-    createUserWithEmailAndPassword(firebaseAuth, email, password);
+  const registerUser = async (email, password) =>
+   await createUserWithEmailAndPassword(firebaseAuth, email, password);
 
   // Login user
-  const LoginUser = (email, password) => {
-    signInWithEmailAndPassword(firebaseAuth, email, password);
+  const LoginUser =  async (email, password) => {
+    await signInWithEmailAndPassword(firebaseAuth, email, password);
   };
   //  Google login
-  const LoginUserWithGoogle = () =>
-    signInWithPopup(firebaseAuth, googleProvider);
-
-
-  console.log(user);
+  const LoginUserWithGoogle = async () =>
+   await  signInWithPopup(firebaseAuth, googleProvider);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
-      setuser(user);
+      onAuthStateChanged(firebaseAuth, (user) => {
+      if(user) return setuser(user)
+      else{return setuser(null)}
     });
-    return () => {
-      unsubscribe();
-    };
+    // return () => {
+    //   unsubscribe();
+    // };
   }, []);
 
 
-  const isLoggedIn =  user ? true : false
+  
+
 
   return (
     <FirebaseContext.Provider
