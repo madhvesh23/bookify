@@ -24,9 +24,8 @@ function BookView() {
   if (data == null) return <h1>Loading ...</h1>;
 
   const order = async()=>{
-   const result =  await firebase. placeorder(params.bookid , qty)
+   const result =  await firebase.placeorder(params.bookid , qty)
    console.log(result , "order places")
-
   }
 
   return (

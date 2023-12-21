@@ -45,10 +45,7 @@ export const FirebaseProvider = (props) => {
   const [user, setuser] = useState(null);
   // Create Book into firstore
   const submitBooks = async (name, isbnNumber, coverImage, price) => {
-    const storeRef = ref(
-      storage,
-      `uploads/images/${Date.now()}-${coverImage.name}`
-    );
+    const storeRef = ref(storage,`uploads/images/${Date.now()}-${coverImage.name}`);
     const resultBucket = await uploadBytes(storeRef, coverImage);
     return await addDoc(collection(firestore, "books"), {
       name,
@@ -127,6 +124,7 @@ export const FirebaseProvider = (props) => {
       unsubscribe();
     };
   }, []);
+
 
   const isLoggedIn =  user ? true : false
 

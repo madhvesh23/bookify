@@ -6,10 +6,10 @@ function Navbar() {
   const loggedIn = firebase.isLoggedIn;
   console.log(loggedIn);
   return (
-    <nav className="navbar navbar-expand-lg bg-dark " data-bs-theme="dark">
+    <nav class="navbar navbar-custom navbar-expand navbar-light">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
-          Navbar
+        <a className="bookify navbar-brand" href="/">
+          BookShell
         </a>
         <button
           className="navbar-toggler"
@@ -51,6 +51,17 @@ function Navbar() {
                 </li>
               </>
             )}
+          </ul>
+          <ul className="nav navbar-nav navbar-right" >
+          <li className="nav-item">
+                  <a
+                    className="logout nav-link "
+                    aria-current="page"
+                    href="/books/orders"
+                  >
+                    Logout
+                  </a>
+                </li>
           </ul>
         </div>
       </div>

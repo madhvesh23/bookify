@@ -11,6 +11,7 @@ function Listing() {
   const handleSubmit = async  (e)=>{
     e.preventDefault()
     await firebase.submitBooks(name ,isbnNumber,coverImage,price)
+    alert('Book Created')
   }
 
   return (

@@ -12,7 +12,7 @@ function Orders() {
 
     if(firebase.isLoggedIn === false) return <h1>Please Login Again...</h1>
   return (
-    <div>
+    <div className='orders'>
       {books.map((book)=>(
             <Listcard Link={`/books/orders/${book.id}`} key={book.id} id={book.id} {...book.data()} />
         ))}
