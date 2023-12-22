@@ -18,18 +18,11 @@ function App() {
     <div>
       <Navbar />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Home />
-              </ProtectedRoute >
-          }
-        />
-        <Route path="/books/list" element= {  <ProtectedRoute> <Listing /></ProtectedRoute>} />
-        <Route path="/book/view/:bookid" element={  <ProtectedRoute>  <BookView /></ProtectedRoute>} />
-        <Route path="/books/orders" element={  <ProtectedRoute> <Orders /></ProtectedRoute> } />
-        <Route path="/books/orders/:bookid" element={ <ProtectedRoute> <OrderDetails /> </ProtectedRoute> } /> :
+        <Route path="/" element={ firebase.isLoggedIn ?  <Home /> : <Login /> } />
+        <Route path="/books/list" element={<Listing />} />
+        <Route path="/book/view/:bookid" element={<BookView />} />
+        <Route path="/books/orders" element={<Orders />} />
+        <Route path="/books/orders/:bookid" element={<OrderDetails />} />
         <Route path="/signup" element={<Register />} />
         <Route path="/login" element={<Login />} />
       </Routes>

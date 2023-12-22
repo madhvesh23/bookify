@@ -6,6 +6,7 @@ import {
   signInWithPopup,
   createUserWithEmailAndPassword,
   getAuth,
+  signOut,
   signInWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
@@ -117,6 +118,12 @@ export const FirebaseProvider = (props) => {
   const LoginUserWithGoogle = async () =>
    await  signInWithPopup(firebaseAuth, googleProvider);
 
+
+const signOutUser = async () =>{
+  await signOut(firebaseAuth)
+}
+
+
   useEffect(() => {
       onAuthStateChanged(firebaseAuth, (user) => {
       if(user) return setuser(user)
@@ -126,6 +133,7 @@ export const FirebaseProvider = (props) => {
     //   unsubscribe();
     // };
   }, []);
+  console.log(user)
 
 
   
@@ -136,6 +144,7 @@ export const FirebaseProvider = (props) => {
       value={{
         registerUser,
         LoginUser,
+        signOutUser,
         LoginUserWithGoogle,
         // isLoggedIn,
         submitBooks,

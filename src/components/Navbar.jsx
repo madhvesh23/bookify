@@ -1,12 +1,21 @@
 import React from "react";
 import { useFirebase } from "./context/FirebaseContext";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const firebase = useFirebase();
+  const navigate = useNavigate();
   const loggedIn = firebase.isLoggedIn;
   console.log(loggedIn);
+
+  const loggedOutUser = async () => {
+     await firebase.signOutUser().then(()=>{
+      console.log('logged out')
+      navigate('/')
+     })
+  }
   return (
-    <nav class="navbar navbar-custom navbar-expand navbar-light">
+    <nav className="navbar navbar-custom navbar-expand navbar-light">
       <div className="container-fluid">
         <a className="bookify navbar-brand" href="/">
           BookShell
@@ -59,7 +68,8 @@ function Navbar() {
                     aria-current="page"
                     href="/books/orders"
                   >
-                    Logout
+                    <button onClick={loggedOutUser}>Logout</button>
+                    
                   </a>
                 </li>
           </ul>
