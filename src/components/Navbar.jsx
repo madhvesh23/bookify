@@ -6,7 +6,7 @@ function Navbar() {
   const firebase = useFirebase();
   const navigate = useNavigate();
   const loggedIn = firebase.isLoggedIn;
-  console.log(loggedIn);
+  // console.log(loggedIn);
 
   const loggedOutUser = async () => {
      await firebase.signOutUser().then(()=>{
