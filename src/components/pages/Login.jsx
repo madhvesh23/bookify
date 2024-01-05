@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useFirebase } from "../context/FirebaseContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export const Login = () => {
   const navigate = useNavigate();
 
@@ -17,9 +20,11 @@ export const Login = () => {
       const user = await firebase.LoginUser(email, password);
       console.log(user, "user");
       setTimeout(() => {
+      toast("Successfully looged in");
         firebase.setLoading(false);
         navigate("/");
-      }, 1000);
+      }, 500);
+      
     } catch (error) {
       console.log(error);
     }
@@ -48,7 +53,7 @@ export const Login = () => {
       }, 500);
     };
     handleClick();
-  },[]);
+  }, []);
 
   return (
     <>
@@ -113,6 +118,18 @@ export const Login = () => {
               Sign with Google
             </button>
           </div>
+          <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         </>
       )}
     </>

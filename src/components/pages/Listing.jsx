@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useFirebase } from "../context/FirebaseContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Listing() {
   const [name, setName] = useState("");
   const [isbnNumber, setisbnNumber] = useState("");
@@ -9,8 +11,12 @@ function Listing() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    firebase.setLoading(true)
     await firebase.submitBooks(name, isbnNumber, coverImage, price);
-    alert("Book Created");
+    toast("Book Added");
+    setTimeout(() => {
+      firebase.setLoading(false);
+    }, 500);
   };
 
   return (
@@ -81,6 +87,18 @@ function Listing() {
               </button>
             </form>
           </div>
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
         </>
       )}
     </>

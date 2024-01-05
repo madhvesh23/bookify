@@ -10,6 +10,7 @@ function OrderDetails() {
       .viewOrderDetails(params.bookid)
       .then((orders) => setorders(orders.docs));
   }, []);
+  console.log(orders)
   return (
     <div className="container border rounded  ">
       <h1 className="text-center border p-2 rounded m-2 bg-success"  >Orders</h1>

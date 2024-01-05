@@ -20,11 +20,6 @@ export const Register = () => {
       console.log(error);
     }
   };
-  // useEffect(() => {
-  //   if (firebase.isLoggedIn) {
-
-  //   }
-  // });
   return (
     <div className="container mt-5 border rounded">
       <form onSubmit={handleUser}>

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useFirebase } from "./context/FirebaseContext";
 import { useNavigate } from "react-router-dom";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Navbar() {
   const [loading, setLoading] = useState(false);
   const firebase = useFirebase();
@@ -12,6 +13,7 @@ function Navbar() {
   const loggedOutUser = async () => {
     firebase.setLoading(true);
     await firebase.signOutUser().then(() => {
+      toast("Please login again!");
       setTimeout(() => {
         firebase.setLoading(false);
         navigate("/login");
@@ -123,6 +125,18 @@ function Navbar() {
             )}
           </div>
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </nav>
     </>
   );

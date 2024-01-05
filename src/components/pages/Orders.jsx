@@ -12,15 +12,16 @@ function Orders() {
         .fetchBooks(firebase.user.uid)
         ?.then((books) => setbooks(books.docs));
   }, [firebase]);
+  console.log(books);
 
-  if (firebase.loading)
-    return (
-      <div className="loading-container">
-        {" "}
-        <div className="loading-spinner"></div>{" "}
-      </div>
-    );
-    
+  // if (firebase.loading)
+  //   return (
+  //     <div className="loading-container">
+  //       {" "}
+  //       <div className="loading-spinner"></div>{" "}
+  //     </div>
+  //   );
+
   return (
     <div className="orders">
       {books.map((book) => (
