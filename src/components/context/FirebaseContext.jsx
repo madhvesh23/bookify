@@ -21,6 +21,7 @@ import {
   where,
 } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { Redirect } from "react-router-dom";
 
 const FirebaseContext = createContext(null);
 
@@ -42,15 +43,17 @@ const storage = getStorage(firebaseApp);
 const firestore = getFirestore(firebaseApp);
 
 export const FirebaseProvider = (props) => {
-
-
-  
+  const [loading, setLoading] = useState(false);
+  const [redirect, setRedirect] = useState(false);
   // user information hook
   const [user, setuser] = useState(null);
-  const isLoggedIn = user ? true : false
+  const isLoggedIn = user ? true : false;
   // Create Book into firstore
   const submitBooks = async (name, isbnNumber, coverImage, price) => {
-    const storeRef = ref(storage,`uploads/images/${Date.now()}-${coverImage.name}`);
+    const storeRef = ref(
+      storage,
+      `uploads/images/${Date.now()}-${coverImage.name}`
+    );
     const resultBucket = await uploadBytes(storeRef, coverImage);
     return await addDoc(collection(firestore, "books"), {
       name,
@@ -108,36 +111,33 @@ export const FirebaseProvider = (props) => {
 
   // create new user
   const registerUser = async (email, password) =>
-   await createUserWithEmailAndPassword(firebaseAuth, email, password);
+    await createUserWithEmailAndPassword(firebaseAuth, email, password);
 
   // Login user
-  const LoginUser =  async (email, password) => {
+  const LoginUser = async (email, password) => {
     await signInWithEmailAndPassword(firebaseAuth, email, password);
   };
   //  Google login
-  const LoginUserWithGoogle = async () =>
-   await  signInWithPopup(firebaseAuth, googleProvider);
+  const LoginUserWithGoogle = async () => {
+    await signInWithPopup(firebaseAuth, googleProvider);
+  };
 
-
-const signOutUser = async () =>{
-  await signOut(firebaseAuth)
-}
-
+  const signOutUser = async () => {
+    await signOut(firebaseAuth);
+  };
 
   useEffect(() => {
-      onAuthStateChanged(firebaseAuth, (user) => {
-      if(user) return setuser(user)
-      else{return setuser(null)}
+    onAuthStateChanged(firebaseAuth, (user) => {
+      if (user) return setuser(user);
+      else {
+        return setuser(null);
+      }
     });
     // return () => {
     //   unsubscribe();
     // };
   }, []);
   // console.log(user)
-
-
-  
-
 
   return (
     <FirebaseContext.Provider
@@ -156,6 +156,10 @@ const signOutUser = async () =>{
         user,
         isLoggedIn,
         viewOrderDetails,
+        redirect,
+        loading,
+        setLoading,
+        setRedirect
       }}
     >
       {props.children}

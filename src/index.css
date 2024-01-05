@@ -2,65 +2,139 @@
     width: 400px;
 } */
 
-body{
-    font-family: sans-serif!important;
-    background-color: rgba(0, 0, 0, 0.125);
+body {
+  font-family: sans-serif !important;
+  background-color: rgba(0, 0, 0, 0.125);
 }
-.navbar{
-    background-color: #e2e8f0;
+.navbar {
+  background-color: #e2e8f0;
 }
-.navbar-expand .navbar-collapse{
-    display: flex!important;
-    flex-basis: auto;
-    justify-content: space-around;
-    font-size: 18px;
-    font-weight: 800px;
-    box-shadow: 0px 0px 4px 0px #00000017;
-    cursor: pointer;
+.navbar-expand .navbar-collapse {
+  display: flex !important;
+  flex-basis: auto;
+  justify-content: space-around;
+  font-size: 18px;
+  font-weight: 800px;
+  box-shadow: 0px 0px 4px 0px #00000017;
+  cursor: pointer;
 }
-.card img{
-height: 300px;
+.card img {
+  height: 300px;
+}
 
+.container img {
+  width: 250px;
 }
-
-.container img{
-    width: 250px;
+.card {
+  box-shadow: 0px 0px 3px 1px #0000004a;
 }
-.card{
-    box-shadow: 0px 0px 3px 1px #0000004a;
-}
-.card:hover{
-    border: 2px solid green;
-    box-shadow: 0px 0px 15px 0px;
-    transition: 0.5s smooth;
+.card:hover {
+  border: 2px solid green;
+  box-shadow: 0px 0px 15px 0px;
+  transition: 0.5s smooth;
 }
 
 .card-title {
-    letter-spacing: 4px;
-    font-family: system-ui;
-    font-weight: 700!important;
-    text-decoration: underline;
+  letter-spacing: 4px;
+  font-family: system-ui;
+  font-weight: 700 !important;
+  text-decoration: underline;
 }
-.card-text{
-    font-family: ui-monospace;
-}
-
-.card-body{
-    text-align: center;
+.card-text {
+  font-family: ui-monospace;
 }
 
-.orders{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+.card-body {
+  text-align: center;
 }
-.collapse{
-    justify-content: space-between;
+
+.orders {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
-.logout{
-    margin: 0px 23px;
+.collapse {
+  justify-content: space-between;
 }
-.bookify{
-    font-size: 35px!important;
-    font-family: monospace!important;
+.logout {
+  margin: 0px 23px;
+}
+.bookify {
+  font-size: 35px !important;
+  font-family: monospace !important;
+}
+
+.navbar .container-fluid .collapse ul li button {
+  color: black;
+  font-size: 20px;
+  font-weight: 500;
+}
+.navbar .container-fluid .collapse ul li {
+  margin: 0px 10px;
+}
+
+.navbar .container-fluid .collapse ul li button:hover {
+  color: #0a5282;
+  transition: all 0.2s ease-in-out;
+  transform: scaleX(1);
+
+}
+.navbar .container-fluid .bookify {
+  border: none;
+  background: none;
+  font-weight: 900;
+}
+
+.logout {
+  color: rgb(94, 94, 94) !important;
+}
+.logout:hover {
+    color: #0a5282!important;
+}
+
+.navbar .container-fluid .bookify::before,
+.navbar .container-fluid .collapse ul li button::before {
+  content: "";
+  position: absolute;
+  width: 50%; /* Adjust the width of the underline as needed */
+  height: 2px; /* Adjust the height of the underline as needed */
+  bottom: 10px;
+  left: 25%; /* Adjust the left position to center the underline */
+  background-color: #3498db; /* Adjust the color of the underline as needed */
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.navbar .container-fluid .bookify:hover::before,
+.navbar .container-fluid .collapse ul li button:hover::before {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+/* loading */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loading-spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
