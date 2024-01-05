@@ -48,7 +48,7 @@ export const Login = () => {
       }, 500);
     };
     handleClick();
-  });
+  },[]);
 
   return (
     <>
